@@ -4,7 +4,7 @@
 \alias{cpridges}
 \title{Create a ridge plot with histogram and kernel density estimates for each group of data.}
 \usage{
-cpridges(data, signal, group)
+cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells)
 }
 \arguments{
 \item{data}{A dataframe or tibble with DNA content data.}

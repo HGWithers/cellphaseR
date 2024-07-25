@@ -10,9 +10,23 @@
 #'
 #' @examples
 #' cpridges(data = PIdata, signal = "PI Obj Integral", group = "Cells")
-cpridges <- function(data, signal, group){
+cpridges <- function(data = PIdata, signal = `PI Obj Integral`, group = Cells){
+  signal <- enquo(signal)
+  group <- enquo(group)
+
   data %>%
-    ggplot(aes(x = signal)) +
-    geom_density(aes(color = group)) +
-    theme_bw()
+    ggplot(aes(x = !!signal, y = !!group)) +
+    geom_density_ridges(aes(color = !!group),
+                        fill = NA,
+                        scale = 0.99) +
+    geom_density_ridges(aes(fill = !!group),
+                        color = NA,
+                        stat = "binline",
+                        bins = 200,
+                        alpha = 0.3,
+                        scale = 0.99) +
+    labs(y = "") +
+    theme_bw() +
+    theme(panel.grid = element_blank(),
+          legend.position = "none")
 }
