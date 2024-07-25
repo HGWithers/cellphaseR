@@ -1,0 +1,47 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# cellphaseR
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+cellphaseR is an R package for the analysis of cell cycle experiments generated on the BioTek Cytation platform. It is primarily an implementation of [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html) and [ggridges](https://cran.r-project.org/web/packages/ggridges/index.html) packages for visualization and analysis of object level DNA content measurements by propidium iodide (PI) staining. Although not tested here, this package should be applicable to any other staining methods that are indicative of relative DNA content.
+
+## Installation
+
+You can install the development version of cellphaseR like so:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("HGWithers/cellphaseR")
+```
+
+## Example Dataset
+
+An example dataset `PIdata` is provided that contains imaging data for PI stained cells from two different cell types: wildtype (WT) mouse embryonic fibroblasts (wtMEF) or p53 knockout MEFs transduced with HRas-V12-GFP oncogene.
+
+```{r example}
+## Load the library
+library(cellphaseR)
+
+## View the example dataset
+PIdata
+```
+
+```{r pressure, echo = FALSE}
+plot(pressure)
+```
+
