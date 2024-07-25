@@ -77,8 +77,13 @@ cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells)
 
 <img src="man/figures/README-cpridges_base_example-1.png" width="80%" />
 
+### Customizing `cpridges`
+
 The position of peaks can be labeled using the `label.peaks` argument of
-`cpridges` and refined using the `peak.threshold` argument.
+`cpridges` and refined using the `peak.threshold` argument. Arguments
+are also available to adjust histogram bins or log<sub>10</sub>
+transform the x-axis. Additional ggplot2 functions can be appended to
+`cpridges` for customization of plots.
 
 ``` r
 cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells,
