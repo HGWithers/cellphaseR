@@ -22,3 +22,5 @@ Imports:
 Depends: 
     R (>= 2.10)
 LazyData: true
+URL: https://github.com/HGWithers/cellphaseR
+BugReports: https://github.com/HGWithers/cellphaseR/issues
