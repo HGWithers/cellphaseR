@@ -1,0 +1,17 @@
+Package: cellphaseR
+Title: Cell Cycle Analysis of BioTek Cytation Imaging Data
+Version: 0.0.0.9000
+Authors@R: 
+    person("Henry", "Withers", , "first.last@example.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-9746-9352"))
+Description: This package provides a collection of functions to generate
+    common cell cycle analysis plots using imaging data from the BioTek
+    Cytation platform. This package is specifically developed using data
+    from propidium-iodide (PI) staining of cells, but it presumably should
+    be applicable to other staining methods that are also indicative of
+    relative DNA content.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
