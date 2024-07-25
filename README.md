@@ -28,10 +28,10 @@ devtools::install_github("HGWithers/cellphaseR")
 
 ## Example Dataset
 
-An example dataset `PIdata` is provided that contains imaging data for
-PI stained cells from two different cell types: wildtype (WT) mouse
-embryonic fibroblasts (wtMEF) or p53 knockout MEFs transduced with
-HRas-V12-GFP oncogene.
+An example dataset `PIdata` is provided with the package that contains
+imaging data for PI stained cells from two different cell types:
+wildtype (WT) mouse embryonic fibroblasts (wtMEF) or p53 knockout MEFs
+transduced with HRas-V12-GFP oncogene.
 
 ``` r
 ## Load the library
@@ -56,4 +56,14 @@ PIdata
 #> # ℹ 2 more variables: `PI Obj Mean` <dbl>, `PI Obj Peak` <dbl>
 ```
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+The `cpridges` function generates a histogram with kernel density
+estimate overlay for your DNA content data. Here we use the
+`PI Obj Integral` output value from the example `PIdata` to plot cell
+cycle data by each cell type (`group = Cells`)
+
+``` r
+cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells)
+#> Picking joint bandwidth of 152000
+```
+
+<img src="man/figures/README-cpridges_example-1.png" width="100%" />
