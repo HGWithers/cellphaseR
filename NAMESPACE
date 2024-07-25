@@ -3,5 +3,6 @@
 export(cpridges)
 import(dplyr)
 import(ggplot2)
+import(ggpmisc)
 import(ggridges)
 import(magrittr)

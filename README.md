@@ -36,6 +36,13 @@ transduced with HRas-V12-GFP oncogene.
 ``` r
 ## Load the library
 library(cellphaseR)
+#> Registered S3 methods overwritten by 'ggpp':
+#>   method                  from   
+#>   heightDetails.titleGrob ggplot2
+#>   widthDetails.titleGrob  ggplot2
+```
+
+``` r
 
 ## View the example dataset
 PIdata
@@ -56,6 +63,8 @@ PIdata
 #> # ℹ 2 more variables: `PI Obj Mean` <dbl>, `PI Obj Peak` <dbl>
 ```
 
+## Visualizing Cell Cycle Data
+
 The `cpridges` function generates a histogram with kernel density
 estimate overlay for your DNA content data. Here we use the
 `PI Obj Integral` output value from the example `PIdata` to plot cell
@@ -66,4 +75,21 @@ cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells)
 #> Picking joint bandwidth of 152000
 ```
 
-<img src="man/figures/README-cpridges_example-1.png" width="100%" />
+<img src="man/figures/README-cpridges_base_example-1.png" width="100%" />
+
+The position of peaks can be labeled using the `label.peaks` argument of
+`cpridges` and refined using the `peak.threshold` argument.
+
+``` r
+cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells,
+         label.peaks = TRUE, peak.threshold = 0) + ggplot2::labs(title = "Peak threshold = 0.0")
+#> Picking joint bandwidth of 152000
+```
+
+``` r
+cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells,
+         label.peaks = TRUE, peak.threshold = 0.1) + ggplot2::labs(title = "Peak threshold = 0.1")
+#> Picking joint bandwidth of 152000
+```
+
+<img src="man/figures/README-cpridges_options_example-1.png" width="50%" /><img src="man/figures/README-cpridges_options_example-2.png" width="50%" />

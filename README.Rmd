@@ -41,9 +41,18 @@ library(cellphaseR)
 PIdata
 ```
 
+## Visualizing Cell Cycle Data
 The `cpridges` function generates a histogram with kernel density estimate overlay for your DNA content data. Here we use the `PI Obj Integral` output value from the example `PIdata` to plot cell cycle data by each cell type (`group = Cells`) 
 
-```{r cpridges_example}
+```{r cpridges_base_example, dpi = 300}
 cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells)
 ```
 
+The position of peaks can be labeled using the `label.peaks` argument of `cpridges` and refined using the `peak.threshold` argument.
+
+```{r cpridges_options_example, dpi = 300, out.width = "50%", fig.show = "hold"}
+cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells,
+         label.peaks = TRUE, peak.threshold = 0) + ggplot2::labs(title = "Peak threshold = 0.0")
+cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells,
+         label.peaks = TRUE, peak.threshold = 0.1) + ggplot2::labs(title = "Peak threshold = 0.1")
+```

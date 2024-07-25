@@ -4,7 +4,15 @@
 \alias{cpridges}
 \title{Create a ridge plot with histogram and kernel density estimates for each group of data.}
 \usage{
-cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells)
+cpridges(
+  data = PIdata,
+  signal = `PI Obj Integral`,
+  group = Cells,
+  x.log = FALSE,
+  bins = 300,
+  label.peaks = FALSE,
+  peak.threshold = 0.1
+)
 }
 \arguments{
 \item{data}{A dataframe or tibble with DNA content data.}
@@ -12,13 +20,21 @@ cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells)
 \item{signal}{Column name containing the measurement values for DNA content staining (e.g. object integral for PI staining)}
 
 \item{group}{Column name containing the treatment condition or unique sample ID to split the data on.}
+
+\item{x.log}{Logical indicating whether to log10 transform the x-axis (default = FALSE).}
+
+\item{bins}{Define the number of bins for the histogram (default = 300).}
+
+\item{label.peaks}{Logical indicating whether to provide the x-axis value for peaks identified using the \code{ggpmsic::find_peaks} function (default = FALSE).}
+
+\item{peak.threshold}{Numeric value between 0 and 1 defining the threshold below which peaks will be ignored (default = 0.1). Passed to the \code{find_peaks} function from the ggpmisc package.}
 }
 \value{
-A ggplot object for ridgeplots.
+A ggplot object for ridgeplots with histogram and kernel density estimates.
 }
 \description{
 Create a ridge plot with histogram and kernel density estimates for each group of data.
 }
 \examples{
-cpridges(data = PIdata, signal = "PI Obj Integral", group = "Cells")
+cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells)
 }
