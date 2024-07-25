@@ -19,7 +19,7 @@ that are indicative of relative DNA content.
 
 ## Installation
 
-You can install the development version of cellphaseR like so:
+You can install the development version of cellphaseR as follows:
 
 ``` r
 # install.packages("devtools")
@@ -28,7 +28,7 @@ devtools::install_github("HGWithers/cellphaseR")
 
 ## Example Dataset
 
-An example dataset `PIdata` is provided with the package that contains
+An example dataset `PIdata` is provided with the package and contains
 imaging data for PI stained cells from two different cell types:
 wildtype (WT) mouse embryonic fibroblasts (wtMEF) or p53 knockout MEFs
 transduced with HRas-V12-GFP oncogene.
@@ -75,7 +75,7 @@ cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells)
 #> Picking joint bandwidth of 152000
 ```
 
-<img src="man/figures/README-cpridges_base_example-1.png" width="100%" />
+<img src="man/figures/README-cpridges_base_example-1.png" width="80%" />
 
 The position of peaks can be labeled using the `label.peaks` argument of
 `cpridges` and refined using the `peak.threshold` argument.
