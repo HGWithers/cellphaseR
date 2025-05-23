@@ -83,11 +83,31 @@ functions can be appended to `cpridges` for customization of plots.
 
 ``` r
 cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells,
-         label.peaks = TRUE, peak.threshold = 0) + ggplot2::labs(title = "Peak threshold = 0.0")
+         label.peaks = TRUE, peak.threshold = 0) + ggplot2::labs(title = "Peak threshold = 0.1")
 #> Picking joint bandwidth of 0.049
 cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells,
-         label.peaks = TRUE, peak.threshold = 0.1) + ggplot2::labs(title = "Peak threshold = 0.1")
+         label.peaks = TRUE, peak.threshold = 0.1) + ggplot2::labs(title = "Peak threshold = 0.8")
 #> Picking joint bandwidth of 0.049
 ```
 
 <img src="man/figures/README-cpridges_options_example-1.png" width="50%" /><img src="man/figures/README-cpridges_options_example-2.png" width="50%" />
+
+### Extracting Peak Data
+
+The `cpridges` function also allows you to extract the peak data as a
+tibble using the `extract.peaks = TRUE` argument. This will return the
+data instead of the ridge plot.
+
+``` r
+cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells,
+         peak.threshold = 0.1, extract.peaks = TRUE)
+#> # A tibble: 6 × 9
+#>   Cells      `PI Obj Integral` density scaled ndensity  count     n peak  strict
+#>   <chr>                  <dbl>   <dbl>  <dbl>    <dbl>  <dbl> <int> <lgl> <lgl> 
+#> 1 MEF p53ko…              5.99   2.03   1        1     12037.  5937 TRUE  FALSE 
+#> 2 MEF p53ko…              6.34   1.52   0.748    0.748  9008.  5937 TRUE  FALSE 
+#> 3 MEF p53ko…              6.67   0.542  0.267    0.267  3219.  5937 TRUE  FALSE 
+#> 4 wtMEF                   5.72   1.34   0.721    0.721  2181.  1633 TRUE  FALSE 
+#> 5 wtMEF                   6.11   1.85   1        1      3026.  1633 TRUE  FALSE 
+#> 6 wtMEF                   6.46   0.588  0.318    0.318   961.  1633 TRUE  FALSE
+```

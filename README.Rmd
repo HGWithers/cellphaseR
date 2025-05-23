@@ -53,7 +53,15 @@ The position of peaks can be labeled using the `label.peaks` argument of `cpridg
 
 ```{r cpridges_options_example, dpi = 300, out.width = "50%", fig.show = "hold"}
 cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells,
-         label.peaks = TRUE, peak.threshold = 0) + ggplot2::labs(title = "Peak threshold = 0.0")
+         label.peaks = TRUE, peak.threshold = 0) + ggplot2::labs(title = "Peak threshold = 0.1")
 cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells,
-         label.peaks = TRUE, peak.threshold = 0.1) + ggplot2::labs(title = "Peak threshold = 0.1")
+         label.peaks = TRUE, peak.threshold = 0.1) + ggplot2::labs(title = "Peak threshold = 0.8")
+```
+
+### Extracting Peak Data
+The `cpridges` function also allows you to extract the peak data as a tibble using the `extract.peaks = TRUE` argument. This will return the data instead of the ridge plot.  
+
+```{r cpridges_extract_peaks_example}
+cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells,
+         peak.threshold = 0.1, extract.peaks = TRUE)
 ```

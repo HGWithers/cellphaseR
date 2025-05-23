@@ -10,7 +10,8 @@ cpridges(
   group = Cells,
   bins = 300,
   label.peaks = FALSE,
-  peak.threshold = 0.1
+  peak.threshold = 0.1,
+  extract.peaks = FALSE
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ cpridges(
 \item{label.peaks}{Logical indicating whether to provide the x-axis value for peaks identified using the \code{ggpmsic::find_peaks} function (default = FALSE).}
 
 \item{peak.threshold}{Numeric value between 0 and 1 defining the threshold below which peaks will be ignored (default = 0.1). Passed to the \code{find_peaks} function from the ggpmisc package.}
+
+\item{extract.peaks}{Logical indicating whether to return the dataframe with peak calling information or the original ridges plot (default = FALSE).}
 }
 \value{
 A ggplot object for ridgeplots with histogram and kernel density estimates on log10 scale.

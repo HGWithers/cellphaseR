@@ -6,6 +6,7 @@
 #' @param bins Define the number of bins for the histogram (default = 300).
 #' @param label.peaks Logical indicating whether to provide the x-axis value for peaks identified using the `ggpmsic::find_peaks` function (default = FALSE).
 #' @param peak.threshold Numeric value between 0 and 1 defining the threshold below which peaks will be ignored (default = 0.1). Passed to the `find_peaks` function from the ggpmisc package.
+#' @param extract.peaks Logical indicating whether to return the dataframe with peak calling information or the original ridges plot (default = FALSE).
 #'
 #' @return A ggplot object for ridgeplots with histogram and kernel density estimates on log10 scale.
 #' @import magrittr ggplot2 dplyr ggridges ggpmisc
@@ -14,7 +15,8 @@
 #' @examples
 #' cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells)
 cpridges <- function(data = PIdata, signal = `PI Obj Integral`, group = Cells,
-                     bins = 300, label.peaks = FALSE, peak.threshold = 0.1){
+                     bins = 300, label.peaks = FALSE, peak.threshold = 0.1,
+                     extract.peaks = FALSE){
 
   ## Make input arguments dplyr friendly
   signal.char <- deparse(substitute(signal)) ## Adds quotes to the original argument input
@@ -23,6 +25,26 @@ cpridges <- function(data = PIdata, signal = `PI Obj Integral`, group = Cells,
 
   ## This step is critical. The log10 transformation must be performed before plotting and density extraction for find_peaks function
   data[[signal.char]] <- log10(data[[signal.char]])
+
+  if(extract.peaks == TRUE){
+    ## Calculate kernel densities for each group and find peaks
+
+    density.data <- data %>%
+      group_by(!!group) %>%
+      group_modify(~ ggplot2:::compute_density(.x[[signal.char]], NULL)) %>%
+      ungroup()
+
+    colnames(density.data)[colnames(density.data) == "x"] <- signal.char
+
+    density.data %<>%
+      group_by(!!group) %>%
+      mutate(peak = ggpmisc::find_peaks(density, ignore_threshold = peak.threshold), strict = FALSE) %>%
+      ungroup() %>%
+      filter(peak == TRUE)
+
+    return(density.data)
+
+  } else {
 
   main.plot <- data %>%
     ggplot(aes(x = !!signal, y = !!group)) +
@@ -75,4 +97,5 @@ cpridges <- function(data = PIdata, signal = `PI Obj Integral`, group = Cells,
   # }
   #
   return(main.plot)
+  }
 }
