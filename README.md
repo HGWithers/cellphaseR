@@ -40,9 +40,6 @@ library(cellphaseR)
 #>   method                  from   
 #>   heightDetails.titleGrob ggplot2
 #>   widthDetails.titleGrob  ggplot2
-```
-
-``` r
 
 ## View the example dataset
 PIdata
@@ -65,14 +62,14 @@ PIdata
 
 ## Visualizing Cell Cycle Data
 
-The `cpridges` function generates a histogram with kernel density
-estimate overlay for your DNA content data. Here we use the
-`PI Obj Integral` output value from the example `PIdata` to plot cell
-cycle data by each cell type (`group = Cells`)
+The `cpridges` function generates a log<sub>10</sub> histogram with
+kernel density estimate overlay for your DNA content data. Here we use
+the `PI Obj Integral` output value from the example `PIdata` to plot
+cell cycle data by each cell type (`group = Cells`)
 
 ``` r
 cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells)
-#> Picking joint bandwidth of 152000
+#> Picking joint bandwidth of 0.049
 ```
 
 <img src="man/figures/README-cpridges_base_example-1.png" width="80%" />
@@ -81,20 +78,16 @@ cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells)
 
 The position of peaks can be labeled using the `label.peaks` argument of
 `cpridges` and refined using the `peak.threshold` argument. Arguments
-are also available to adjust histogram bins or log<sub>10</sub>
-transform the x-axis. Additional ggplot2 functions can be appended to
-`cpridges` for customization of plots.
+are also available to adjust histogram bins. Additional ggplot2
+functions can be appended to `cpridges` for customization of plots.
 
 ``` r
 cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells,
          label.peaks = TRUE, peak.threshold = 0) + ggplot2::labs(title = "Peak threshold = 0.0")
-#> Picking joint bandwidth of 152000
-```
-
-``` r
+#> Picking joint bandwidth of 0.049
 cpridges(data = PIdata, signal = `PI Obj Integral`, group = Cells,
          label.peaks = TRUE, peak.threshold = 0.1) + ggplot2::labs(title = "Peak threshold = 0.1")
-#> Picking joint bandwidth of 152000
+#> Picking joint bandwidth of 0.049
 ```
 
 <img src="man/figures/README-cpridges_options_example-1.png" width="50%" /><img src="man/figures/README-cpridges_options_example-2.png" width="50%" />

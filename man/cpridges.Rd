@@ -8,7 +8,6 @@ cpridges(
   data = PIdata,
   signal = `PI Obj Integral`,
   group = Cells,
-  x.log = FALSE,
   bins = 300,
   label.peaks = FALSE,
   peak.threshold = 0.1
@@ -21,8 +20,6 @@ cpridges(
 
 \item{group}{Column name containing the treatment condition or unique sample ID to split the data on.}
 
-\item{x.log}{Logical indicating whether to log10 transform the x-axis (default = FALSE).}
-
 \item{bins}{Define the number of bins for the histogram (default = 300).}
 
 \item{label.peaks}{Logical indicating whether to provide the x-axis value for peaks identified using the \code{ggpmsic::find_peaks} function (default = FALSE).}
@@ -30,7 +27,7 @@ cpridges(
 \item{peak.threshold}{Numeric value between 0 and 1 defining the threshold below which peaks will be ignored (default = 0.1). Passed to the \code{find_peaks} function from the ggpmisc package.}
 }
 \value{
-A ggplot object for ridgeplots with histogram and kernel density estimates.
+A ggplot object for ridgeplots with histogram and kernel density estimates on log10 scale.
 }
 \description{
 Create a ridge plot with histogram and kernel density estimates for each group of data.
